@@ -26,11 +26,14 @@
       grid-column: 1 / span 2;
     }
     h2 {
-      margin-top: 0;
-      font-size: 18px;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 8px;
-    }
+  margin-top: 0;
+  font-size: 24px;
+  text-align: center;
+  background-color: green;
+  color: white;          /* better contrast */
+  padding: 12px;         /* space around text */
+  border-radius: 8px;    /* optional: smooth corners */
+}
     .menu-boxes {
       display: flex;
       flex-direction: column;
@@ -64,19 +67,43 @@
   </style>
 </head>
 <body>
-
-  <div class="container">
-
-    <!-- Block 3: WIP DATA -->
-    <div class="block full-width">
-      <h2>FG DATA</h2>
+<h2>INVENTORY MANAGEMENT</h2>
+    <div class="container">
+    <!-- Block 1: PRESSING -->
+    <div class="block">
       <div class="menu-boxes">
         <a class="menu-box" href="https://script.google.com/macros/s/AKfycby2DJ6q5-p-xLLrJgU5SG-2JGBsIHPYa2RvnxsSjO-uHqEz_GcUKNEzePHUGxwdj7nJ/exec">ENTER FG DATA & VIEW ENTERED FG DATA</a>
-        <a class="menu-box" href="https://script.google.com/macros/s/AKfycbx1HbGBKGilRc89VHKtXUT0-eAw-EC-AM3FMBf8CjnrWqKwsWijPqBBqXhyxU2uPtyHWg/exec">ENTER INVOICE DISPATCH DATE & INVOICE CANCELLED INFORMATION</a>
+      </div>
+    </div>
+
+    <!-- Block 2: CNC -->
+    <div class="block">
+      <div class="menu-boxes">
+        <a class="menu-box" href="https://script.google.com/macros/s/AKfycbx1HbGBKGilRc89VHKtXUT0-eAw-EC-AM3FMBf8CjnrWqKwsWijPqBBqXhyxU2uPtyHWg/exec">ENTER INVOICE DISPATCH DATE & INVOICE CANCELLED INFORMATION</a>        
+      </div>
+    </div>
+      
+      <!-- Block 3: TAPPING -->
+    <div class="block">
+      <div class="menu-boxes">
         <a class="menu-box" href="https://mgplservices.github.io/inventory_management/index.html">VIEW PENDING INVOICES.. (COMING SOON)</a>
       </div>
     </div>
-  </div>
 
+      <!-- Block 4: PLATING -->
+    <div class="block">
+      <div class="menu-boxes">
+        <a class="menu-box" href="https://mgplservices.github.io/plating_area_management/index.html">PLATING AREA MANAGEMENT</a>
+      </div>
+    </div>
+
+      <!-- Block 4: VENDOR -->
+    <div class="block">
+      <div class="menu-boxes">
+        <a class="menu-box" href="https://script.google.com/macros/s/AKfycbzDYfKBkcXCJPFsUtnKi3tTapbmb-n-kFiwWYCF99xK1sl4PEai1yX4AK7i_kHdXH5k/exec">VENDOR MANAGEMENT</a>
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>
