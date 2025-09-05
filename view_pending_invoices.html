@@ -74,7 +74,8 @@
     // Inject Apps Script JSONP endpoint
     window.onload = function() {
       const script = document.createElement("script");
-      script.src = "https://script.google.com/macros/s/AKfycbwYePZxtBXrhXksM8hoGupo8IT7193xG4NiItTxLnkrHcZNbojn5LaWhQ-u01C5lJ42/exec?callback=showData";  
+      //script.src = "https://script.google.com/macros/s/AKfycbwYePZxtBXrhXksM8hoGupo8IT7193xG4NiItTxLnkrHcZNbojn5LaWhQ-u01C5lJ42/exec?callback=showData"; 
+      script.src = "https://script.google.com/macros/s/AKfycbwYePZxtBXrhXksM8hoGupo8IT7193xG4NiItTxLnkrHcZNbojn5LaWhQ-u01C5lJ42/exec?callback=showData&ts=" + Date.now();
       document.body.appendChild(script);
     };
 
