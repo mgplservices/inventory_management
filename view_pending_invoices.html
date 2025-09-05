@@ -34,52 +34,45 @@
   <h2>📊 View Pending Invoices</h2>
   <div id="todayDataSection">Loading...</div>
 
-  <script>
+ <div id="todayDataSection"></div>
 
-    // JSONP callback
-    function showData(data) {
-      const section = document.getElementById("todayDataSection"); 
+<script>
+  const url = "https://script.google.com/macros/s/AKfycbx20xVN14pTj6M4o6w3oRzvfV6kMIbGSdl0E3iivExzmdE8ADDTi-xa8UZNYaqVcJYwog/exec";
 
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const section = document.getElementById("todayDataSection");
 
-        if (!data || !Array.isArray(data.rows)) {
-              section.innerHTML = "❌ Invalid data format.";
-              return;
-            }
+      if (!data || !Array.isArray(data.rows)) {
+        section.innerHTML = "❌ Invalid data format.";
+        return;
+      }
 
-            if (data.rows.length === 0) {
-              section.innerHTML = "📭 No entries found for today.";
-              return;
-            }
-          let tableHTML = "<table><thead><tr>";
-            data.headers.forEach(header => {
-            tableHTML += `<th>${header}</th>`;
-            });
-          tableHTML += "</tr></thead><tbody>";
-          
-            // Rows
-           // Rows
-            data.rows.forEach(row => {
-              tableHTML += "<tr>";
-              row.forEach((cell, colIndex) => {
-                
-                  // read-only
-                  tableHTML += `<td>${cell ?? ""}</td>`;
-                
-              });
-              tableHTML += "</tr>";
-            });
-            section.innerHTML = tableHTML;           
-    }
+      if (data.rows.length === 0) {
+        section.innerHTML = "📭 No entries found for today.";
+        return;
+      }
 
-    // Inject Apps Script JSONP endpoint
-    window.onload = function() {
-      const script = document.createElement("script");
-      //script.src = "https://script.google.com/macros/s/AKfycbwYePZxtBXrhXksM8hoGupo8IT7193xG4NiItTxLnkrHcZNbojn5LaWhQ-u01C5lJ42/exec?callback=showData"; 
-      script.src = "https://script.google.com/macros/s/AKfycbwYePZxtBXrhXksM8hoGupo8IT7193xG4NiItTxLnkrHcZNbojn5LaWhQ-u01C5lJ42/exec?callback=showData&ts=" + Date.now();
-      document.body.appendChild(script);
-    };
+      let tableHTML = "<table border='1'><thead><tr>";
+      data.headers.forEach(header => {
+        tableHTML += `<th>${header}</th>`;
+      });
+      tableHTML += "</tr></thead><tbody>";
 
-  
-  </script>
+      data.rows.forEach(row => {
+        tableHTML += "<tr>";
+        row.forEach(cell => {
+          tableHTML += `<td>${cell ?? ""}</td>`;
+        });
+        tableHTML += "</tr>";
+      });
+      tableHTML += "</tbody></table>";
+
+      section.innerHTML = tableHTML;
+    })
+    .catch(err => console.error("Error fetching data:", err));
+</script>
+
 </body>
 </html>
