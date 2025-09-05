@@ -37,42 +37,22 @@
  <div id="todayDataSection"></div>
 
 <script>
-  const url = "https://script.google.com/macros/s/AKfycbx20xVN14pTj6M4o6w3oRzvfV6kMIbGSdl0E3iivExzmdE8ADDTi-xa8UZNYaqVcJYwog/exec";
+const url = "https://script.google.com/macros/s/AKfycbx20xVN14pTj6M4o6w3oRzvfV6kMIbGSdl0E3iivExzmdE8ADDTi-xa8UZNYaqVcJYwog/exec";
 
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      const section = document.getElementById("todayDataSection");
-
-      if (!data || !Array.isArray(data.rows)) {
-        section.innerHTML = "❌ Invalid data format.";
-        return;
-      }
-
-      if (data.rows.length === 0) {
-        section.innerHTML = "📭 No entries found for today.";
-        return;
-      }
-
-      let tableHTML = "<table border='1'><thead><tr>";
-      data.headers.forEach(header => {
-        tableHTML += `<th>${header}</th>`;
-      });
-      tableHTML += "</tr></thead><tbody>";
-
-      data.rows.forEach(row => {
-        tableHTML += "<tr>";
-        row.forEach(cell => {
-          tableHTML += `<td>${cell ?? ""}</td>`;
-        });
-        tableHTML += "</tr>";
-      });
-      tableHTML += "</tbody></table>";
-
-      section.innerHTML = tableHTML;
-    })
-    .catch(err => console.error("Error fetching data:", err));
+fetch(url)
+  .then(res => res.text()) // use text() first to debug
+  .then(txt => {
+    console.log("Raw response:", txt);
+    try {
+      const data = JSON.parse(txt);
+      console.log("Parsed JSON:", data);
+    } catch (err) {
+      console.error("❌ Not valid JSON", err);
+    }
+  })
+  .catch(err => console.error("Fetch failed:", err));
 </script>
+
 
 </body>
 </html>
